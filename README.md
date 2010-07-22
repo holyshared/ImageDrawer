@@ -1,7 +1,6 @@
-Gradually
-===========
+# ImageDrawer
 
-Gradually is an experimental slide show plug-in using the canvas element.
+API that draws to the canvas in the image is offered.
 
 ![Screenshot](http://holyshared.github.com/Gradually/snapshot.png)
 

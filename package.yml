@@ -1,7 +1,7 @@
-name: Gradually
+name: ImageDrawer
 author: holyshared
-category: Widgets
-tags: [gallery, canvas, slideshow]
-demo: http://holyshared.github.com/Gradually/
+category: Media
+tags: [canvas, api, media, image]
+demo: http://holyshared.github.com/ImageDrawer/
 current: 1.0
 #docs: http://url.to.docs

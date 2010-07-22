@@ -28,7 +28,7 @@ requires:
   - Fx/Fx
   - Fx/Fx.Transitions
 
-provides: [ImageDrawer, ImageDrawer.Grid]
+provides: [ImageDrawer, ImageDrawer.Grid, ImageDrawer.Slice]
 
 ...
 */
@@ -127,9 +127,6 @@ var ImageDrawer = new Class({
 
 	setupDrawer: function(canvas) {
 		this.size = canvas.getSize();
-		this.cols = this.size.x / this.options.width; 
-		this.rows = this.size.y / this.options.height;
-		this.total = this.cols * this.rows;
 		this.context = canvas.getContext('2d');
 	},
 
@@ -167,35 +164,8 @@ var ImageDrawer = new Class({
 	draw: function(porps) {
 		if ($type(this.canvas) != "element"
 		|| this.canvas.nodeName != "CANVAS") {
-			new TypeError("The canvas element is not set.");
+			throw new TypeError("The canvas element is not set.");
 		}
-
-		var op = this.options;
-		var duration = op.duration;
-
-		this.drawing = true;
-		this.drawers = [];		
-
-		this.fireEvent("drawStart");
-		porps.each(function(p, k) {
-			var fx = new Fx.ImageDrawer({
-				"transition": op.transition,
-				"duration": duration,
-				"link": "cancel",
-				"fps": 30,
-				"onMotion":	this.onMotion.bind(p),
-				"onComplete": this.onProgress.bind(this)
-			});
-
-			fx.start({
-				"height": [op.height, 0],
-				"width": [op.width, 0],
-				"top": [p.y, p.y + op.height / 2],
-				"left": [p.x, p.x + op.width / 2]
-			});
-			duration = duration + op.interval;
-			this.drawers.push(fx);
-		}, this);
 	}
 
 });
