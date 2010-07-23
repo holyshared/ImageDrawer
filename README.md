@@ -2,61 +2,110 @@
 
 API that draws to the canvas in the image is offered.
 
-![Screenshot](http://holyshared.github.com/Gradually/snapshot.png)
+![Screenshot](http://holyshared.github.com/ImageDrawer/screenshot.png)
 
 It tells it in the beginning.
-
 Please note that the explanation of this plug-in usage might be a strange content because I am not confident of English though it apologizes very much.
 
-How to use
-----------
+## ImageDrawer.Grid
 
-A description necessary to use Gradually is as follows.
+### How to use
 
-HTML to use Gradually is described in the beginning. 
-HTML is as follows. 
+
+#### Step.1 HTML
 
 	#HTML
-	<ul id="gradually-container" class="gradually">
-		<li><img title="image1 title" alt="image1 discription" src="images/demo1.jpg" width="650" height="275" /></li>
-		<li><img title="image2 title" alt="image2 discription" src="images/demo2.jpg" width="650" height="275" /></li>
-		<li><img title="image3 title" alt="image3 discription" src="images/demo1.jpg" width="650" height="275" /></li>
-		<li><img title="image4 title" alt="image4 discription" src="images/demo2.jpg" width="650" height="275" /></li>
-		<li><img title="image5 title" alt="image5 discription" src="images/demo1.jpg" width="650" height="275" /></li>
-		<li><img title="image6 title" alt="image6 discription" src="images/demo2.jpg" width="650" height="275" /></li>
-	</ul>
+	<canvas id="myCanvas"></canvas>
 
-Next, javascript is described. 
-The element and the image that plays the role of the container are specified. 
-The option is specified now.
+#### Step.2 Javascript
 
 	#JS
-	var container = null, sources = null;
-	var options = {
-		'panelHeight': 55,
-		'panelWidth': 65,
-		'interval': 3000,
-		'duration': 800,
-		'zIndex': 9000
-	};
+	var myImage = new Image();
+	myImage.src = "images/draw-image.jpg";
+	myImage.onload  = function() {
 
-	var container	= $("gradually-container");
-	var sources		= $("gradually-container").getElements("li img");
+		var myCanvas = document.id("myCanvas");
+		var drawer = new ImageDrawer.Grid({
+			'height': 55, 
+			'width': 65,
+			'transition': 'expo:in:out',
+			'onDrawStart': function() {
+				//image drawing start
+				log.set("html", "Start");
+			},
+			'onDrawComplete': function() {
+				//image drawing complete
+				log.set("html", "Complete");
+			}
+		});
+		drawer.setCanvas(myCanvas)
+		drawer.setImage(myImage);
 
-	new Gradually(container, sources, options);
+		//drawing a image
+		drawer.drawLeft();
+	}
+
+or 
+
+	#JS
+	var myImage = new Image();
+	myImage.src = "images/draw-image.jpg";
+	myImage.onload  = function() {
+
+		var myCanvas = document.id("myCanvas");
+		var drawer = new ImageDrawer.Grid({
+			'canvas': myCanvas, 
+			'source': myImage, 
+			'height': 55, 
+			'width': 65,
+			'transition': 'expo:in:out',
+			'onDrawStart': function() {
+				//image drawing start
+				log.set("html", "Start");
+			},
+			'onDrawComplete': function() {
+				//image drawing complete
+				log.set("html", "Complete");
+			}
+		});
+		//drawing a image
+		drawer.drawLeft();
+	}
 
 
-Options
--------
+### Options
 
 All options have default values assigned, hence are optional.
 
-### Version 1.0
+* **canvas**: (element) Canvas element where it draws.
+* **source**: (element/string) Image where it draws.
+* **height**: (int) Height of divided panel.
+* **width**: (int) Width of divided panel.
+* **interval**: (int) Interval when image is switched.
+* **duration**: (int) duration of animation.
+
+
+
+
+
+
+
+## ImageDrawer.Slice
+
+### How to use
+
+### Options
+
+All options have default values assigned, hence are optional.
+
+
+
+
 
 * **panelHeight**: (int) Height of divided panel.
 * **panelWidth**: (int) Width of divided panel.
-* **interval**: (int) Interval when image is switched.
-* **duration**: (int) duration of animation.
+* **interval**:
+* **duration**:
 * **zIndex**: (int) starting position of layer.
 * **onStart**: When the slide show is begun, it is generated.
 * **onPreload**: When reading all images is completed, it is generated.

@@ -28,13 +28,12 @@ requires:
   - Fx/Fx
   - Fx/Fx.Transitions
 
-provides: [ImageDrawer, ImageDrawer.Grid, ImageDrawer.Slice]
+provides: [ImageDrawer, ImageDrawer.Grid, ImageDrawer.Collapses]
 
 ...
 */
 
-
-ImageDrawer.Slice = new Class({
+ImageDrawer.Zoomout = new Class({
 
 	Extends: ImageDrawer,
 
@@ -52,18 +51,16 @@ ImageDrawer.Slice = new Class({
 	onMotion: function(props) {
 		var drawHeight = this.height;
 		var drawWidth  = this.width;
-//		var left = this.x;
-//		var top = this.top;
-
 		this.context.clearRect(this.x, this.y, this.width, this.height);
 		this.context.drawImage(this.source,
-			this.x, props.top, this.width, this.height,
-			this.x, props.top, this.width, this.height);
+			props.left, props.top, props.width, props.height,
+			props.left, props.top, props.width, props.height);
 	},
 
 	setupDrawer: function(canvas) {
 		this.parent(canvas);
 		this.cols = this.size.x / this.options.width; 
+		this.total = this.cols; 
 	},
 
 	getContext: function(x, y) {
@@ -72,9 +69,8 @@ ImageDrawer.Slice = new Class({
 			"context": this.context,
 			"source": this.source,
 			"x": x, "y": y,
-			"width": options.width,
-			"height": this.size.y,
-			"top": this.size.y
+			"width": this.size.x,
+			"height": this.size.y
 		};		
 	},
 
@@ -88,28 +84,32 @@ ImageDrawer.Slice = new Class({
 		this.drawers = [];
 
 		this.fireEvent("drawStart");
-		porps.each(function(p, k) {
-			var fx = new Fx.ImageDrawer({
-				"transition": op.transition,
-				"duration": duration,
-				"link": "cancel",
-				"fps": 30,
-				"onMotion":	this.onMotion.bind(p),
-				"onComplete": this.onProgress.bind(this)
-			});
-			fx.start({"top": [0, p.top]});
-			duration = duration + op.interval;
-			this.drawers.push(fx);
-		}, this);
+		var fx = new Fx.ImageDrawer({
+			"transition": op.transition,
+			"duration": duration,
+			"link": "cancel",
+			"fps": 30,
+			"onMotion":	this.onMotion.bind(porps),
+			"onComplete": this.onProgress.bind(this)
+		});
+		fx.start({
+			"left": [0, this.size.x / 2],
+			"top": [0, this.size.y / 2],
+			"height": [this.size.y, 0],
+			"width": [this.size.x, 0]
+		});
+		duration = duration + op.interval;
+		this.drawers.push(fx);
 	},
 
 	drawLeft: function() {
 		var contexts = [];
 		var options = this.options;
-		for (var x = 0; x < this.cols; x++) {
-			var left = x * options.width;
-			contexts.push(this.getContext(left, 0));
-		}
+//		for (var x = 0; x < this.cols; x++) {
+//			var left = x * options.width;
+	//		contexts.push(this.getContext(left, 0));
+			contexts = this.getContext(0, 0);
+//		}
 		this.draw(contexts);
 	}//,
 /*

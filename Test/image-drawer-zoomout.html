@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-		<title>Image Drawer Grid</title>
+		<title>Image Drawer Collapses</title>
 		<meta name="keywords" content="mootools,demo,javascript,animation,canvas" />
 		<meta name="description" content="" />
 		<meta name="author" content="Noritaka Horio" />
@@ -11,13 +11,16 @@
 		<link rel="stylesheet" type="text/css" href="../Demos/css/gradually.css" media="screen,print" />
 		<style type="text/css">
 			.container {
-				background: #000000;
+				background-color: #000000;
+				background-image: url(images/img_demo2.jpg);
+				background-position: left top;
+				background-repeat: no-repeat;
 			}
 		</style>
 		<script type="text/javascript" src="../Demos/js/libraries/mootools-1.2.4-core.js"></script>
 		<script type="text/javascript" src="../Demos/js/libraries/mootools-1.2.4.2-more.js"></script>
 		<script type="text/javascript" src="../Source/ImageDrawer.js"></script>
-		<script type="text/javascript" src="../Source/ImageDrawer.Slice.js"></script>
+		<script type="text/javascript" src="../Source/ImageDrawer.Zoomout.js"></script>
 		<script type="text/javascript">
 			window.addEvent("domready", function() {
 				var log = document.id("log");
@@ -39,13 +42,15 @@
 							'height': image1.height
 						});
 	
-						var drawer = new ImageDrawer.Slice({
-							'width': 65,
+						var drawer = new ImageDrawer.Zoomout({
+							'width': 30,
 							'transition': 'expo:in',
 							'duration': 600,
 							'interval': 70,
 							'onDrawStart': function() { log.set("html", "Start"); },
-							'onDrawComplete': function() { log.set("html", "Complete"); }
+							'onDrawComplete': function() {
+								log.set("html", "Complete");
+							}
 						});
 
 						drawer.setCanvas(left).setImage(image1);

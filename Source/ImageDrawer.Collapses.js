@@ -1,6 +1,6 @@
 /*
 ---
-description: It makes it to non-display by dividing the image into a small grid.
+description: API that draws to the canvas in the image is offered.
 
 license: MIT-style
 
@@ -28,23 +28,20 @@ requires:
   - Fx/Fx
   - Fx/Fx.Transitions
 
-provides: [ImageDrawer, ImageDrawer.Grid, ImageDrawer.Slice]
+provides: [ImageDrawer, ImageDrawer.Grid, ImageDrawer.Collapses]
 
 ...
 */
 
-
-ImageDrawer.Grid = new Class({
+ImageDrawer.Collapses = new Class({
 
 	Extends: ImageDrawer,
 
 	options: {
 		'canvas': null,
 		'source': null,
-		'height': 50,
 		'width': 50,
-		'interval': 70,
-		'duration': 600
+		'duration': 30
 	},
 
 	initialize: function(options) {
@@ -52,22 +49,18 @@ ImageDrawer.Grid = new Class({
 	},
 
 	onMotion: function(props) {
-		var drawHeight = (props.height > 0) ? props.height : 0.01;
-		var drawWidth  = (props.width > 0) ? props.width : 0.01;
-		var left = (props.left > 0) ? props.left : 0.01;
-		var top = (props.top > 0) ? props.top : 0.01;
-
+		var drawHeight = this.height;
+		var drawWidth  = this.width;
 		this.context.clearRect(this.x, this.y, this.width, this.height);
 		this.context.drawImage(this.source,
-			left, top, drawWidth, drawHeight,
-			left, top, drawWidth, drawHeight);
+			this.x, props.top, this.width, this.height,
+			this.x, props.top, this.width, this.height);
 	},
 
 	setupDrawer: function(canvas) {
 		this.parent(canvas);
 		this.cols = this.size.x / this.options.width; 
-		this.rows = this.size.y / this.options.height;
-		this.total = this.cols * this.rows;
+		this.total = this.cols; 
 	},
 
 	getContext: function(x, y) {
@@ -77,7 +70,8 @@ ImageDrawer.Grid = new Class({
 			"source": this.source,
 			"x": x, "y": y,
 			"width": options.width,
-			"height": options.height
+			"height": this.size.y,
+			"top": this.size.y
 		};		
 	},
 
@@ -88,7 +82,7 @@ ImageDrawer.Grid = new Class({
 		var duration = op.duration;
 
 		this.drawing = true;
-		this.drawers = [];		
+		this.drawers = [];
 
 		this.fireEvent("drawStart");
 		porps.each(function(p, k) {
@@ -100,13 +94,7 @@ ImageDrawer.Grid = new Class({
 				"onMotion":	this.onMotion.bind(p),
 				"onComplete": this.onProgress.bind(this)
 			});
-
-			fx.start({
-				"height": [op.height, 0],
-				"width": [op.width, 0],
-				"top": [p.y, p.y + op.height / 2],
-				"left": [p.x, p.x + op.width / 2]
-			});
+			fx.start({"top": [0, p.top]});
 			duration = duration + op.interval;
 			this.drawers.push(fx);
 		}, this);
@@ -116,15 +104,12 @@ ImageDrawer.Grid = new Class({
 		var contexts = [];
 		var options = this.options;
 		for (var x = 0; x < this.cols; x++) {
-			for (var y = 0; y < this.rows; y++) {
-				var left = x * options.width;
-				var top = y * options.height;
-				contexts.push(this.getContext(left, top));
-			}
+			var left = x * options.width;
+			contexts.push(this.getContext(left, 0));
 		}
 		this.draw(contexts);
-	},
-
+	}//,
+/*
 	drawRight: function() {
 		var contexts = [];
 		var options = this.options;
@@ -164,5 +149,5 @@ ImageDrawer.Grid = new Class({
 		}
 		this.draw(contexts);
 	}
-
+*/
 });

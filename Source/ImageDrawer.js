@@ -28,7 +28,7 @@ requires:
   - Fx/Fx
   - Fx/Fx.Transitions
 
-provides: [ImageDrawer, ImageDrawer.Grid, ImageDrawer.Slice]
+provides: [ImageDrawer, ImageDrawer.Grid, ImageDrawer.Collapses]
 
 ...
 */
