@@ -51,10 +51,11 @@ ImageDrawer.Collapses = new Class({
 	onMotion: function(props) {
 		var drawHeight = this.height;
 		var drawWidth  = this.width;
-		this.context.clearRect(this.x, this.y, this.width, this.height);
+		this.context.clearRect(this.drawX, this.drawY, this.drawWidth, this.drawHeight);
+		this.context.globalAlpha = props.opacity;
 		this.context.drawImage(this.source,
-			this.x, props.top, this.width, this.height,
-			this.x, props.top, this.width, this.height);
+			this.drawX, props.top, this.drawWidth, props.height,
+			this.drawX, props.top, this.drawWidth, props.height);
 	},
 
 	setupDrawer: function(canvas) {
@@ -68,10 +69,10 @@ ImageDrawer.Collapses = new Class({
 		return {
 			"context": this.context,
 			"source": this.source,
-			"x": x, "y": y,
-			"width": options.width,
-			"height": this.size.y,
-			"top": this.size.y
+			"drawX": x,
+			"drawY": y,
+			"drawHeight": this.size.y,
+			"drawWidth": options.width
 		};		
 	},
 
@@ -83,8 +84,8 @@ ImageDrawer.Collapses = new Class({
 
 		this.drawing = true;
 		this.drawers = [];
-
 		this.fireEvent("drawStart");
+
 		porps.each(function(p, k) {
 			var fx = new Fx.ImageDrawer({
 				"transition": op.transition,
@@ -94,7 +95,13 @@ ImageDrawer.Collapses = new Class({
 				"onMotion":	this.onMotion.bind(p),
 				"onComplete": this.onProgress.bind(this)
 			});
-			fx.start({"top": [0, p.top]});
+
+			fx.start({
+				"top": [0, 275/2],
+				"height": [275, 0],
+				"opacity": [1, 0]
+			});
+
 			duration = duration + op.interval;
 			this.drawers.push(fx);
 		}, this);
@@ -108,46 +115,16 @@ ImageDrawer.Collapses = new Class({
 			contexts.push(this.getContext(left, 0));
 		}
 		this.draw(contexts);
-	}//,
-/*
+	},
+
 	drawRight: function() {
 		var contexts = [];
 		var options = this.options;
 		for (var x = this.cols; x > 0; x--) {
-			for (var y = 0; y < this.rows; y++) {
-				var left = (x - 1) * options.width;
-				var top = y * options.height;
-				contexts.push(this.getContext(left, top));
-			}
-		}
-		this.draw(contexts);
-	},
-
-
-	drawTop: function() {
-		var contexts = [];
-		var options = this.options;
-		for (var y = 0; y < this.rows; y++) {
-			for (var x = 0; x < this.cols; x++) {
-				var left = x * options.width;
-				var top = y * options.height;
-				contexts.push(this.getContext(left, top));
-			}
-		}
-		this.draw(contexts);
-	},
-
-	drawBottom: function() {
-		var contexts = [];
-		var options = this.options;
-		for (var y = this.rows; y >= 0; y--) {
-			for (var x = 0; x < this.cols; x++) {
-				var left = x * options.width;
-				var top = y * options.height;
-				contexts.push(this.getContext(left, top));
-			}
+			var left = (x - 1) * options.width;
+			contexts.push(this.getContext(left, 0));
 		}
 		this.draw(contexts);
 	}
-*/
+
 });

@@ -52,15 +52,15 @@ ImageDrawer.Grid = new Class({
 	},
 
 	onMotion: function(props) {
-		var drawHeight = (props.height > 0) ? props.height : 0.01;
-		var drawWidth  = (props.width > 0) ? props.width : 0.01;
+		var height = (props.height > 0) ? props.height : 0.01;
+		var width  = (props.width > 0) ? props.width : 0.01;
 		var left = (props.left > 0) ? props.left : 0.01;
 		var top = (props.top > 0) ? props.top : 0.01;
 
-		this.context.clearRect(this.x, this.y, this.width, this.height);
+		this.context.clearRect(this.drawX, this.drawY, this.drawWidth, this.drawHeight);
 		this.context.drawImage(this.source,
-			left, top, drawWidth, drawHeight,
-			left, top, drawWidth, drawHeight);
+			left, top, width, height,
+			left, top, width, height);
 	},
 
 	setupDrawer: function(canvas) {
@@ -75,9 +75,9 @@ ImageDrawer.Grid = new Class({
 		return {
 			"context": this.context,
 			"source": this.source,
-			"x": x, "y": y,
-			"width": options.width,
-			"height": options.height
+			"drawX": x, "drawY": y,
+			"drawWidth": options.width,
+			"drawHeight": options.height
 		};		
 	},
 
@@ -104,8 +104,8 @@ ImageDrawer.Grid = new Class({
 			fx.start({
 				"height": [op.height, 0],
 				"width": [op.width, 0],
-				"top": [p.y, p.y + op.height / 2],
-				"left": [p.x, p.x + op.width / 2]
+				"top": [p.drawY, p.drawY + op.height / 2],
+				"left": [p.drawX, p.drawX + op.width / 2]
 			});
 			duration = duration + op.interval;
 			this.drawers.push(fx);

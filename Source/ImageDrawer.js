@@ -156,11 +156,6 @@ var ImageDrawer = new Class({
 		this.drawing = false;
 	},
 
-	redraw: function() {
-		this.context.clearRect(0, 0, this.size.x, this.size.y);
-		this.context.drawImage(this.source, 0, 0);
-	},
-
 	draw: function(porps) {
 		if ($type(this.canvas) != "element"
 		|| this.canvas.nodeName != "CANVAS") {

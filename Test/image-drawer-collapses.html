@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-		<title>Image Drawer Collapses</title>
+		<title>ImageDrawer.Collapses.js</title>
 		<meta name="keywords" content="mootools,demo,javascript,animation,canvas" />
 		<meta name="description" content="" />
 		<meta name="author" content="Noritaka Horio" />
@@ -12,9 +12,6 @@
 		<style type="text/css">
 			.container {
 				background-color: #000000;
-				background-image: url(images/img_demo2.jpg);
-				background-position: left top;
-				background-repeat: no-repeat;
 			}
 		</style>
 		<script type="text/javascript" src="../Demos/js/libraries/mootools-1.2.4-core.js"></script>
@@ -43,9 +40,9 @@
 						});
 	
 						var drawer = new ImageDrawer.Collapses({
-							'width': 30,
-							'transition': 'expo:in',
-							'duration': 300,
+							'width': 50,
+							'transition': 'sine:in',
+							'duration': 600,
 							'interval': 70,
 							'onDrawStart': function() { log.set("html", "Start"); },
 							'onDrawComplete': function() {
@@ -58,7 +55,7 @@
 					}
 
 				});
-/*
+
 				var drawRight = document.id("drawRight");
 				drawRight.addEvent("click", function() {
 					var image2 = new Image();
@@ -76,93 +73,32 @@
 							'height': image2.height
 						});
 	
-						var drawer = new ImageDrawer.Grid({
-							'transition': 'back:in:out',
-							'height': 55,
-							'width': 65,
-							'duration': 1000,
+						var drawer = new ImageDrawer.Collapses({
+							'width': 50,
+							'transition': 'expo:in',
+							'duration': 600,
+							'interval': 70,
 							'onDrawStart': function() { log.set("html", "Start"); },
-							'onDrawComplete': function() { log.set("html", "Complete"); }
+							'onDrawComplete': function() {
+								log.set("html", "Complete");
+							}
 						});
 						drawer.setImage(image2).setCanvas(right);
 						drawer.drawRight();
 					}
 				});
-
-				var drawTop = document.id("drawTop");
-				drawTop.addEvent("click", function() {
-					var image2 = new Image();
-					image2.src = "images/img_demo2.jpg";
-					image2.onload = function(event) {
-						var top = document.id("drawCanvas");
-						top.setProperties({
-							'width': image2.width,
-							'height': image2.height
-						});
-	
-						var container = top.getParent();
-						container.setStyles({
-							'width': image2.width,
-							'height': image2.height
-						});
-	
-						var drawer = new ImageDrawer.Grid({
-							'canvas': top,
-							'source': image2,
-							'height': 55,
-							'width': 65,
-							'duration': 1000,
-							'onDrawStart': function() { log.set("html", "Start"); },
-							'onDrawComplete': function() { log.set("html", "Complete"); }
-						});
-						drawer.drawTop();
-					}
-				});
-
-				var drawBottom = document.id("drawBottom");
-				drawBottom.addEvent("click", function() {
-					var image2 = new Image();
-					image2.src = "images/img_demo2.jpg";
-					image2.onload = function(event) {
-						var bottom = document.id("drawCanvas");
-						bottom.setProperties({
-							'width': image2.width,
-							'height': image2.height
-						});
-	
-						var container = bottom.getParent();
-						container.setStyles({
-							'width': image2.width,
-							'height': image2.height
-						});
-	
-						var drawer = new ImageDrawer.Grid({
-							'canvas': bottom,
-							'source': image2,
-							'height': 55,
-							'width': 65,
-							'duration': 1000,
-							'onDrawStart': function() { log.set("html", "Start"); },
-							'onDrawComplete': function() { log.set("html", "Complete"); }
-						});
-						drawer.drawBottom();
-					}
-				});
-*/
 			});
 		</script>
 	</head>
 	<body>
 		<div id="warpper">
-			<h1>Canvas</h1>
+			<h1>ImageDrawer.Collapses.js</h1>
 			<ul>
 				<li><a id="drawLeft" href="#left">left</a></li>
 				<li><a id="drawRight" href="#right">right</a></li>
-				<li><a id="drawTop" href="#top">top</a></li>
-				<li><a id="drawBottom" href="#bottom">bottom</a></li>
 			</ul>
 			<div class="container"><canvas id="drawCanvas"></canvas></div>
-			<p id="log"></p>
+			<p id="log">&nbsp;</p>
 	    </div>
 	</body>
 </html> 
