@@ -8,7 +8,7 @@
 		<meta name="author" content="Noritaka Horio" />
 		<meta name="copyright" content="2009 Noritaka Horio All rights reserved" />
 		<link rel="stylesheet" type="text/css" href="../Demos/css/reset.css" media="screen,print" />
-		<link rel="stylesheet" type="text/css" href="../Demos/css/gradually.css" media="screen,print" />
+		<link rel="stylesheet" type="text/css" href="../Demos/css/image-drawer.css" media="screen,print" />
 		<style type="text/css">
 			.container {
 				background-color: #000000;
@@ -20,6 +20,7 @@
 		<script type="text/javascript" src="../Source/ImageDrawer.Expand.js"></script>
 		<script type="text/javascript">
 			window.addEvent("domready", function() {
+
 				var log = document.id("log");
 				var drawLeft = document.id("drawLeft");
 				drawLeft.addEvent("click", function() {
@@ -38,9 +39,9 @@
 							'width': image1.width,
 							'height': image1.height
 						});
-	
+
 						var drawer = new ImageDrawer.Expand({
-							'width': 50,
+							'slideWidth': 50,
 							'transition': 'expo:out',
 							'duration': 600,
 							'interval': 70,
@@ -74,7 +75,7 @@
 						});
 	
 						var drawer = new ImageDrawer.Expand({
-							'width': 50,
+							'slideWidth': 50,
 							'transition': 'expo:in',
 							'duration': 600,
 							'interval': 70,

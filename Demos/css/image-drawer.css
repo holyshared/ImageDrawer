@@ -1,11 +1,13 @@
 @charset "utf-8";
 
-div#container {
+.drawer {
 	width: 650px;
 	padding: 10px;
 	background: #000000;
 }
 
+
+/*
 .gradually {
 	list-style: none;
 	margin: 0px;
@@ -33,3 +35,4 @@ p.information {
 	text-align: right;
 	color: #ffffff;
 }
+*/

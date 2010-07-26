@@ -1,6 +1,6 @@
 /*
 ---
-description: API that draws to the canvas in the image is offered.
+description: ImageDrawer offers API that draws to the canvas in the image while doing animation.
 
 license: MIT-style
 
@@ -84,7 +84,8 @@ var ImageDrawer = new Class({
 		'canvas': null,
 		'source': null,
 		'interval': 70,
-		'duration': 30
+		'transition': 'expo:out',
+		'duration': 600
 	},
 
 	initialize: function(options) {

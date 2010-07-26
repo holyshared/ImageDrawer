@@ -41,9 +41,10 @@ ImageDrawer.Grid = new Class({
 	options: {
 		'canvas': null,
 		'source': null,
-		'height': 50,
-		'width': 50,
+		'gridHeight': 50,
+		'gridWidth': 50,
 		'interval': 70,
+		'transition': 'expo:in:out',
 		'duration': 600
 	},
 
@@ -65,8 +66,8 @@ ImageDrawer.Grid = new Class({
 
 	setupDrawer: function(canvas) {
 		this.parent(canvas);
-		this.cols = this.size.x / this.options.width; 
-		this.rows = this.size.y / this.options.height;
+		this.cols = this.size.x / this.options.gridWidth; 
+		this.rows = this.size.y / this.options.gridHeight;
 		this.total = this.cols * this.rows;
 	},
 
@@ -76,8 +77,8 @@ ImageDrawer.Grid = new Class({
 			"context": this.context,
 			"source": this.source,
 			"drawX": x, "drawY": y,
-			"drawWidth": options.width,
-			"drawHeight": options.height
+			"drawWidth": options.gridWidth,
+			"drawHeight": options.gridHeight
 		};		
 	},
 
@@ -101,10 +102,10 @@ ImageDrawer.Grid = new Class({
 			});
 
 			fx.start({
-				"height": [0, op.height],
-				"width": [0, op.width],
-				"top": [p.drawY + op.height / 2, p.drawY],
-				"left": [p.drawX + op.width / 2, p.drawX]
+				"height": [0, op.gridHeight],
+				"width": [0, op.gridWidth],
+				"top": [p.drawY + op.gridHeight / 2, p.drawY],
+				"left": [p.drawX + op.gridWidth / 2, p.drawX]
 			});
 			duration = duration + op.interval;
 			this.drawers.push(fx);
@@ -116,8 +117,8 @@ ImageDrawer.Grid = new Class({
 		var options = this.options;
 		for (var x = 0; x < this.cols; x++) {
 			for (var y = 0; y < this.rows; y++) {
-				var left = x * options.width;
-				var top = y * options.height;
+				var left = x * options.gridWidth;
+				var top = y * options.gridHeight;
 				contexts.push(this.getContext(left, top));
 			}
 		}
@@ -129,8 +130,8 @@ ImageDrawer.Grid = new Class({
 		var options = this.options;
 		for (var x = this.cols; x > 0; x--) {
 			for (var y = 0; y < this.rows; y++) {
-				var left = (x - 1) * options.width;
-				var top = y * options.height;
+				var left = (x - 1) * options.gridWidth;
+				var top = y * options.gridHeight;
 				contexts.push(this.getContext(left, top));
 			}
 		}
@@ -143,8 +144,8 @@ ImageDrawer.Grid = new Class({
 		var options = this.options;
 		for (var y = 0; y < this.rows; y++) {
 			for (var x = 0; x < this.cols; x++) {
-				var left = x * options.width;
-				var top = y * options.height;
+				var left = x * options.gridWidth;
+				var top = y * options.gridHeight;
 				contexts.push(this.getContext(left, top));
 			}
 		}
@@ -156,8 +157,8 @@ ImageDrawer.Grid = new Class({
 		var options = this.options;
 		for (var y = this.rows; y >= 0; y--) {
 			for (var x = 0; x < this.cols; x++) {
-				var left = x * options.width;
-				var top = y * options.height;
+				var left = x * options.gridWidth;
+				var top = y * options.gridHeight;
 				contexts.push(this.getContext(left, top));
 			}
 		}

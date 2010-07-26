@@ -40,8 +40,8 @@
 						});
 	
 						var drawer = new ImageDrawer.Grid({
-							'height': 55,
-							'width': 65,
+							'gridHeight': 55,
+							'gridWidth': 65,
 							'transition': 'expo:in:out',
 							'duration': 30,
 							'onDrawStart': function() { log.set("html", "Start"); },
@@ -73,8 +73,8 @@
 	
 						var drawer = new ImageDrawer.Grid({
 							'transition': 'back:in:out',
-							'height': 55,
-							'width': 65,
+							'gridHeight': 55,
+							'gridWidth': 65,
 							'duration': 1000,
 							'onDrawStart': function() { log.set("html", "Start"); },
 							'onDrawComplete': function() { log.set("html", "Complete"); }
@@ -104,8 +104,8 @@
 						var drawer = new ImageDrawer.Grid({
 							'canvas': top,
 							'source': image2,
-							'height': 55,
-							'width': 65,
+							'gridHeight': 55,
+							'gridWidth': 65,
 							'duration': 1000,
 							'onDrawStart': function() { log.set("html", "Start"); },
 							'onDrawComplete': function() { log.set("html", "Complete"); }
@@ -134,8 +134,8 @@
 						var drawer = new ImageDrawer.Grid({
 							'canvas': bottom,
 							'source': image2,
-							'height': 55,
-							'width': 65,
+							'gridHeight': 55,
+							'gridWidth': 65,
 							'duration': 1000,
 							'onDrawStart': function() { log.set("html", "Start"); },
 							'onDrawComplete': function() { log.set("html", "Complete"); }

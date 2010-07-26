@@ -40,8 +40,10 @@ ImageDrawer.Expand = new Class({
 	options: {
 		'canvas': null,
 		'source': null,
-		'width': 50,
-		'duration': 30
+		'slideWidth': 50,
+		'interval': 70,
+		'transition': 'expo:in',
+		'duration': 600
 	},
 
 	initialize: function(options) {
@@ -49,8 +51,6 @@ ImageDrawer.Expand = new Class({
 	},
 
 	onMotion: function(props) {
-		var drawHeight = this.height;
-		var drawWidth  = this.width;
 		this.context.clearRect(this.drawX, this.drawY, this.drawWidth, this.drawHeight);
 		this.context.globalAlpha = props.opacity;
 		this.context.drawImage(this.source,
@@ -60,7 +60,7 @@ ImageDrawer.Expand = new Class({
 
 	setupDrawer: function(canvas) {
 		this.parent(canvas);
-		this.cols = this.size.x / this.options.width; 
+		this.cols = this.size.x / this.options.slideWidth; 
 		this.total = this.cols; 
 	},
 
@@ -72,7 +72,7 @@ ImageDrawer.Expand = new Class({
 			"drawX": x,
 			"drawY": y,
 			"drawHeight": this.size.y,
-			"drawWidth": options.width
+			"drawWidth": options.slideWidth
 		};		
 	},
 
@@ -110,7 +110,7 @@ ImageDrawer.Expand = new Class({
 		var contexts = [];
 		var options = this.options;
 		for (var x = 0; x < this.cols; x++) {
-			var left = x * options.width;
+			var left = x * options.slideWidth;
 			contexts.push(this.getContext(left, 0));
 		}
 		this.draw(contexts);
@@ -120,7 +120,7 @@ ImageDrawer.Expand = new Class({
 		var contexts = [];
 		var options = this.options;
 		for (var x = this.cols; x > 0; x--) {
-			var left = (x - 1) * options.width;
+			var left = (x - 1) * options.slideWidth;
 			contexts.push(this.getContext(left, 0));
 		}
 		this.draw(contexts);
