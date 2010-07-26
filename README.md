@@ -6,7 +6,8 @@ It is assumed to build it in the slide show and the image gallery, etc. and is d
 ImageDrawer Project
 [http://github.com/holyshared/ImageDrawer](http://github.com/holyshared/ImageDrawer)
 
-![Screenshot](http://holyshared.github.com/ImageDrawer/screenshot.png)
+![ImageDrawer.Grid](http://holyshared.github.com/ImageDrawer/screenshot1.jpg)
+![ImageDrawer.Expand](http://holyshared.github.com/ImageDrawer/screenshot2.jpg)
 
 Please see the following about use.
 
