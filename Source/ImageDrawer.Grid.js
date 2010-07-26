@@ -28,7 +28,7 @@ requires:
   - Fx/Fx
   - Fx/Fx.Transitions
 
-provides: [ImageDrawer, ImageDrawer.Grid, ImageDrawer.Slice]
+provides: [ImageDrawer, ImageDrawer.Grid, ImageDrawer.Expand]
 
 ...
 */
@@ -90,7 +90,6 @@ ImageDrawer.Grid = new Class({
 		this.drawing = true;
 		this.drawers = [];		
 
-		this.fireEvent("drawStart");
 		porps.each(function(p, k) {
 			var fx = new Fx.ImageDrawer({
 				"transition": op.transition,
@@ -102,10 +101,10 @@ ImageDrawer.Grid = new Class({
 			});
 
 			fx.start({
-				"height": [op.height, 0],
-				"width": [op.width, 0],
-				"top": [p.drawY, p.drawY + op.height / 2],
-				"left": [p.drawX, p.drawX + op.width / 2]
+				"height": [0, op.height],
+				"width": [0, op.width],
+				"top": [p.drawY + op.height / 2, p.drawY],
+				"left": [p.drawX + op.width / 2, p.drawX]
 			});
 			duration = duration + op.interval;
 			this.drawers.push(fx);

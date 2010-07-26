@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-		<title>ImageDrawer.Collapses.js</title>
+		<title>ImageDrawer.Expand.js</title>
 		<meta name="keywords" content="mootools,demo,javascript,animation,canvas" />
 		<meta name="description" content="" />
 		<meta name="author" content="Noritaka Horio" />
@@ -17,7 +17,7 @@
 		<script type="text/javascript" src="../Demos/js/libraries/mootools-1.2.4-core.js"></script>
 		<script type="text/javascript" src="../Demos/js/libraries/mootools-1.2.4.2-more.js"></script>
 		<script type="text/javascript" src="../Source/ImageDrawer.js"></script>
-		<script type="text/javascript" src="../Source/ImageDrawer.Collapses.js"></script>
+		<script type="text/javascript" src="../Source/ImageDrawer.Expand.js"></script>
 		<script type="text/javascript">
 			window.addEvent("domready", function() {
 				var log = document.id("log");
@@ -39,9 +39,9 @@
 							'height': image1.height
 						});
 	
-						var drawer = new ImageDrawer.Collapses({
+						var drawer = new ImageDrawer.Expand({
 							'width': 50,
-							'transition': 'sine:in',
+							'transition': 'expo:out',
 							'duration': 600,
 							'interval': 70,
 							'onDrawStart': function() { log.set("html", "Start"); },
@@ -73,7 +73,7 @@
 							'height': image2.height
 						});
 	
-						var drawer = new ImageDrawer.Collapses({
+						var drawer = new ImageDrawer.Expand({
 							'width': 50,
 							'transition': 'expo:in',
 							'duration': 600,
@@ -92,7 +92,7 @@
 	</head>
 	<body>
 		<div id="warpper">
-			<h1>ImageDrawer.Collapses.js</h1>
+			<h1>ImageDrawer.Expand.js</h1>
 			<ul>
 				<li><a id="drawLeft" href="#left">left</a></li>
 				<li><a id="drawRight" href="#right">right</a></li>

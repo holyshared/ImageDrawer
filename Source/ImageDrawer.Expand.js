@@ -28,12 +28,12 @@ requires:
   - Fx/Fx
   - Fx/Fx.Transitions
 
-provides: [ImageDrawer, ImageDrawer.Grid, ImageDrawer.Collapses]
+provides: [ImageDrawer, ImageDrawer.Grid, ImageDrawer.Expand]
 
 ...
 */
 
-ImageDrawer.Collapses = new Class({
+ImageDrawer.Expand = new Class({
 
 	Extends: ImageDrawer,
 
@@ -84,7 +84,6 @@ ImageDrawer.Collapses = new Class({
 
 		this.drawing = true;
 		this.drawers = [];
-		this.fireEvent("drawStart");
 
 		porps.each(function(p, k) {
 			var fx = new Fx.ImageDrawer({
@@ -97,9 +96,9 @@ ImageDrawer.Collapses = new Class({
 			});
 
 			fx.start({
-				"top": [0, 275/2],
-				"height": [275, 0],
-				"opacity": [1, 0]
+				"top": [this.size.y / 2, 0],
+				"height": [0, this.size.y],
+				"opacity": [0, 1]
 			});
 
 			duration = duration + op.interval;

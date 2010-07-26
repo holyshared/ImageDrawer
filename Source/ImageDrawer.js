@@ -28,7 +28,7 @@ requires:
   - Fx/Fx
   - Fx/Fx.Transitions
 
-provides: [ImageDrawer, ImageDrawer.Grid, ImageDrawer.Collapses]
+provides: [ImageDrawer, ImageDrawer.Grid, ImageDrawer.Expand]
 
 ...
 */
@@ -120,7 +120,7 @@ var ImageDrawer = new Class({
 		}
 		return this;
 	},
-
+	
 	getImage: function(image) {
 		return this.source;
 	},
@@ -141,7 +141,7 @@ var ImageDrawer = new Class({
 		if (this.counter >= this.total) {
 			this.counter = 0;
 			this.drawing = false;
-			this.fireEvent("drawComplete", [this.canvas]);
+			this.fireEvent("drawComplete", [this]);
 		}
 	},
 
@@ -161,6 +161,7 @@ var ImageDrawer = new Class({
 		|| this.canvas.nodeName != "CANVAS") {
 			throw new TypeError("The canvas element is not set.");
 		}
+		this.fireEvent("drawStart", [this]);
 	}
 
 });

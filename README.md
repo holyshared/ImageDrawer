@@ -96,7 +96,7 @@ All options have default values assigned, hence are optional.
 * **duration**: (int) duration of animation.
 
 
-## ImageDrawer.Collapses
+## ImageDrawer.Expand
 
 ### How to use
 
@@ -122,7 +122,7 @@ Please use the read image.
 	myImage.onload  = function() {
 
 		var myCanvas = document.id("myCanvas");
-		var drawer = new ImageDrawer.Collapses({
+		var drawer = new ImageDrawer.Expand({
 			'width': 65,
 			'transition': 'expo:in:out',
 			'onDrawStart': function() {
@@ -149,7 +149,7 @@ or
 	myImage.onload  = function() {
 
 		var myCanvas = document.id("myCanvas");
-		var drawer = new ImageDrawer.Collapses({
+		var drawer = new ImageDrawer.Expand({
 			'canvas': myCanvas, 
 			'source': myImage, 
 			'width': 65,
