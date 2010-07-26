@@ -103,7 +103,11 @@ var ImageDrawer = new Class({
 
 	setCanvas: function(canvas) {
 		this.canvas = canvas;
-		this.setupDrawer(this.canvas);
+		this.context = this.canvas.getContext('2d');
+		if (this.source) {
+			this.setSize();
+		}
+		this.setupDrawer();
 		return this;
 	},
 
@@ -119,6 +123,8 @@ var ImageDrawer = new Class({
 		} else {
 			this.source = image;
 		}
+		this.setSize();
+		this.setupDrawer();
 		return this;
 	},
 	
@@ -126,9 +132,19 @@ var ImageDrawer = new Class({
 		return this.source;
 	},
 
-	setupDrawer: function(canvas) {
-		this.size = canvas.getSize();
-		this.context = canvas.getContext('2d');
+	setupDrawer: function() {},
+
+	setSize: function() {
+		this.size = {
+			'x': this.source.width,
+			'y': this.source.height
+		};
+		if (this.canvas) {
+			this.canvas.setProperties({
+				'width': this.size.x,
+				'height': this.size.y
+			});
+		}
 	},
 
 	isDrawing: function() {

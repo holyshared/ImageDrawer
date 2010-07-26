@@ -1,6 +1,6 @@
 /*
 ---
-description: API that draws to the canvas in the image is offered.
+description: It draws in the image while expanding the width of length.
 
 license: MIT-style
 
@@ -52,16 +52,16 @@ ImageDrawer.Expand = new Class({
 
 	onMotion: function(props) {
 		this.context.clearRect(this.drawX, this.drawY, this.drawWidth, this.drawHeight);
-		this.context.globalAlpha = props.opacity;
 		this.context.drawImage(this.source,
 			this.drawX, props.top, this.drawWidth, props.height,
 			this.drawX, props.top, this.drawWidth, props.height);
 	},
 
-	setupDrawer: function(canvas) {
-		this.parent(canvas);
-		this.cols = this.size.x / this.options.slideWidth; 
-		this.total = this.cols; 
+	setupDrawer: function() {
+		if (this.size) {
+			this.cols = this.size.x / this.options.slideWidth; 
+			this.total = this.cols; 
+		}
 	},
 
 	getContext: function(x, y) {
@@ -74,6 +74,16 @@ ImageDrawer.Expand = new Class({
 			"drawHeight": this.size.y,
 			"drawWidth": options.slideWidth
 		};		
+	},
+
+	getShuffle: function(contexts) { 
+		var shuffle = [];
+		while (contexts.length > 0) {
+			var props = contexts.getRandom();
+			shuffle.push(props);
+			contexts.erase(props);
+		}
+		return shuffle;
 	},
 
 	draw: function(porps) {
@@ -96,9 +106,8 @@ ImageDrawer.Expand = new Class({
 			});
 
 			fx.start({
-				"top": [this.size.y / 2, 0],
-				"height": [0, this.size.y],
-				"opacity": [0, 1]
+				"top": p.top,
+				"height": [0, this.size.y]
 			});
 
 			duration = duration + op.interval;
@@ -111,7 +120,9 @@ ImageDrawer.Expand = new Class({
 		var options = this.options;
 		for (var x = 0; x < this.cols; x++) {
 			var left = x * options.slideWidth;
-			contexts.push(this.getContext(left, 0));
+			var context = this.getContext(left, 0);
+			context.top = [this.size.y / 2, 0];
+			contexts.push(context);
 		}
 		this.draw(contexts);
 	},
@@ -121,9 +132,36 @@ ImageDrawer.Expand = new Class({
 		var options = this.options;
 		for (var x = this.cols; x > 0; x--) {
 			var left = (x - 1) * options.slideWidth;
-			contexts.push(this.getContext(left, 0));
+			var context = this.getContext(left, 0);
+			context.top = [this.size.y / 2, 0];
+			contexts.push(context);
 		}
 		this.draw(contexts);
+	},
+
+	drawTop: function() {
+		var contexts = [];
+		var options = this.options;
+		for (var x = this.cols; x > 0; x--) {
+			var left = (x - 1) * options.slideWidth;
+			var context = this.getContext(left, 0);
+			context.top = [0, 0];
+			contexts.push(context);
+		}
+		this.draw(this.getShuffle(contexts));
+	},
+
+	drawBottom: function() {
+		var contexts = [];
+		var options = this.options;
+		for (var x = this.cols; x > 0; x--) {
+			var left = (x - 1) * options.slideWidth;
+			var context = this.getContext(left, 0);
+			context.top = [this.size.y, 0];
+			contexts.push(context);
+		}
+		this.draw(this.getShuffle(contexts));
 	}
+
 
 });

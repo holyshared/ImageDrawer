@@ -1,6 +1,6 @@
 /*
 ---
-description: It makes it to non-display by dividing the image into a small grid.
+description: It draws in the image in each small grid.
 
 license: MIT-style
 
@@ -64,11 +64,12 @@ ImageDrawer.Grid = new Class({
 			left, top, width, height);
 	},
 
-	setupDrawer: function(canvas) {
-		this.parent(canvas);
-		this.cols = this.size.x / this.options.gridWidth; 
-		this.rows = this.size.y / this.options.gridHeight;
-		this.total = this.cols * this.rows;
+	setupDrawer: function() {
+		if (this.size) {
+			this.cols = this.size.x / this.options.gridWidth;
+			this.rows = this.size.y / this.options.gridHeight;
+			this.total = this.cols * this.rows;
+		}
 	},
 
 	getContext: function(x, y) {

@@ -90,10 +90,13 @@ All options have default values assigned, hence are optional.
 
 * **canvas**: (element) Canvas element where it draws.
 * **source**: (element/string) Image where it draws.
-* **height**: (int) Height of divided panel.
-* **width**: (int) Width of divided panel.
+* **gridHeight**: (int) Height of divided panel.
+* **gridWidth**: (int) Width of divided panel.
 * **interval**: (int) Interval when image is switched.
+* **transition**: (string) Transition of animation. Default is expo:in:out.
 * **duration**: (int) duration of animation.
+* **onDrawStart**: When drawing begins, this event is generated.
+* **onDrawComplete**: When drawing is completed, this event is generated.
 
 
 ## ImageDrawer.Expand
@@ -174,9 +177,12 @@ All options have default values assigned, hence are optional.
 
 * **canvas**: (element) Canvas element where it draws.
 * **source**: (element/string) Image where it draws.
-* **width**: (int) Width of divided panel.
+* **slideWidth**: (int) Width of slide.
+* **transition**: (string) Transition of animation. Default is expo:in.
 * **interval**: (int) Interval when image is switched.
 * **duration**: (int) duration of animation.
+* **onDrawStart**: When drawing begins, this event is generated.
+* **onDrawComplete**: When drawing is completed, this event is generated.
 
 
 ## License

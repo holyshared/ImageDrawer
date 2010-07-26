@@ -6,6 +6,31 @@
 	background: #000000;
 }
 
+.methods {
+	overflow: hidden;
+	list-style: none;
+	margin: 0px 0px 10px 0px;
+	padding: 0px;
+}
+
+.methods li {
+	margin-right: 10px;
+	float: left;
+}
+
+.methods li a {
+	background: #2b4568;
+	color: #ffffff;
+	padding: 5px 15px;
+	display: inline-block;
+	text-decoration: none;
+}
+
+
+.methods li a:hover {
+	background: #f9a200;
+}
+
 
 /*
 .gradually {

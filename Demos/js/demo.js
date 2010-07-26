@@ -3,7 +3,7 @@
 	window.addEvent('domready', function() {
 
 		var canvases = [];
-		var containers = $$('.canvasContainer');
+		var containers = $$('.drawer');
 		containers.each(function(element, key) {
 			var canvas = document.createElement('canvas');
 			canvas.inject(element);
@@ -20,31 +20,34 @@
 		var expand = new ImageDrawer.Expand({
 			'slideWidth': 65,
 			'interval': 70,
-			'duration': 600
+			'duration': 600,
+			'transition': 'expo:out'
 		});
 
-		var drawImages = ["images/demo1.jpg", "images/demo2.jpg"];
+		var drawImages = ['images/demo1.jpg', 'images/demo2.jpg'];
 		var images = Asset.images(drawImages, {
-			"onComplete": function() {
-			var methods = $("grid").getElements("li a");
-			methods.addEvent("click", function(event) {
-				event.stop();
-				var t = event.target;
-				var method = t.getProperty("href").replace("#", "");
-				grid.setCanvas(canvases[0]);
-				grid.setImage(images[0]);
-				grid[method]();
-			});
+			'onComplete': function() {
+				grid.setImage(images.shift());
+				grid.setCanvas(canvases.shift());
 
-			methods = $("expand").getElements("li a");
-			methods.addEvent("click", function(event) {
-				event.stop();
-				var t = event.target;
-				var method = t.getProperty("href").replace("#", "");
-				expand.setCanvas(canvases[1]);
-				expand.setImage(images[1]);
-				expand[method]();
-			});
+				var methods = $('grid').getElements('li a');
+				methods.addEvent('click', function(event) {
+					event.stop();
+					var t = event.target;
+					var method = t.getProperty('href').replace('#', '');
+					grid[method]();
+				});
+
+				expand.setImage(images.shift());
+				expand.setCanvas(canvases.shift());
+
+				methods = $('expand').getElements('li a');
+				methods.addEvent('click', function(event) {
+					event.stop();
+					var t = event.target;
+					var method = t.getProperty('href').replace('#', '');
+					expand[method]();
+				});
 			}
 		});
 
