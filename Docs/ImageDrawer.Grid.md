@@ -2,22 +2,17 @@ Class: ImageDrawer.Grid {#ImageDrawer.Grid}
 ===========================================
 
 ### Extends:
-
 ImageDrawer
-
 
 ## ImageDrawer.Grid Method: constructor {#ImageDrawer.Grid:constructor}
 
 ### Syntax:
-
-	var myImageDrawer = new ImageDrawer.Grid(options);
+var myImageDrawer = new ImageDrawer.Grid(options);
 
 ### Arguments:
-
 1. options - (mixed)  Option when plugin is used.
 
 ### Options:
-
 * **canvas**: (element) Canvas element where it draws.
 * **source**: (element/string) Image where it draws.
 * **gridHeight**: (int) Height of divided panel.
@@ -30,22 +25,17 @@ ImageDrawer
 
 
 
-
-
-
-
-
 ## ImageDrawer.Grid Method: setCanvas {#ImageDrawer.Grid:setCanvas}
 
 ### Syntax:
-myImageDrawer.setCanvas();
+var myCanvas = new Element("canvas");
+myImageDrawer.setCanvas(myCanvas);
 
 ### Arguments:
-1. canvas - (**)
+1. canvas - (element) Canvas element that draws in image.
 
 ### Returns:
-
-
+(object) This ImageDrawer.Grid instance.
 
 
 
@@ -55,7 +45,7 @@ myImageDrawer.setCanvas();
 myImageDrawer.getCanvas();
 
 ### Returns:
-(element) canvas element.
+(element) Canvas element that draws in image.
 
 
 
@@ -86,7 +76,7 @@ myImageDrawer.setImage(myImage);
 myImageDrawer.getImage();
 
 ### Returns:
-(element) Image element.
+(element) Img element where it draws.
 
 
 
