@@ -1,30 +1,37 @@
-Class: Fx.ImageDrawer {#Fx.ImageDrawer}
-=======================================
+Class: ImageDrawer {#ImageDrawer}
+=================================
 
+### Implements:
 
+Events, Options
 
-### Extends:
-
-Fx
-
-
-
-
-Fx.ImageDrawer Method: constructor {#Fx.ImageDrawer:constructor}
------------------------------------------------------------------
-
+ImageDrawer Method: constructor {#ImageDrawer:constructor}
+-----------------------------------------------------------
 
 ### Syntax:
 
-	var myFx.ImageDrawer = new Fx.ImageDrawer(options);
+	var myImageDrawer = new ImageDrawer(options);
 
 ### Arguments:
 
 1. options - (**)
 
+### Options:
 
-Fx.ImageDrawer Method: prepare {#Fx.ImageDrawer:prepare}
----------------------------------------------------------
+* expo - (**)
+
+
+ImageDrawer Method: setDefaultValues {#ImageDrawer:setDefaultValues}
+---------------------------------------------------------------------
+
+
+### Syntax:
+
+
+
+
+ImageDrawer Method: setCanvas {#ImageDrawer:setCanvas}
+-------------------------------------------------------
 
 
 ### Syntax:
@@ -33,8 +40,7 @@ Fx.ImageDrawer Method: prepare {#Fx.ImageDrawer:prepare}
 
 ### Arguments:
 
-1. property - (**)
-2. values - (**)
+1. canvas - (**)
 
 ### Returns:
 
@@ -42,8 +48,22 @@ Fx.ImageDrawer Method: prepare {#Fx.ImageDrawer:prepare}
 
 
 
-Fx.ImageDrawer Method: compute {#Fx.ImageDrawer:compute}
----------------------------------------------------------
+ImageDrawer Method: getCanvas {#ImageDrawer:getCanvas}
+-------------------------------------------------------
+
+
+### Syntax:
+
+
+
+### Returns:
+
+
+
+
+
+ImageDrawer Method: setImage {#ImageDrawer:setImage}
+-----------------------------------------------------
 
 
 ### Syntax:
@@ -52,9 +72,7 @@ Fx.ImageDrawer Method: compute {#Fx.ImageDrawer:compute}
 
 ### Arguments:
 
-1. from - (**)
-2. to - (**)
-3. delta - (**)
+1. image - (**)
 
 ### Returns:
 
@@ -62,8 +80,44 @@ Fx.ImageDrawer Method: compute {#Fx.ImageDrawer:compute}
 
 
 
-Fx.ImageDrawer Method: get {#Fx.ImageDrawer:get}
--------------------------------------------------
+ImageDrawer Method: getImage {#ImageDrawer:getImage}
+-----------------------------------------------------
+
+
+### Syntax:
+
+
+
+### Arguments:
+
+1. image - (**)
+
+### Returns:
+
+
+
+
+
+ImageDrawer Method: setupDrawer {#ImageDrawer:setupDrawer}
+-----------------------------------------------------------
+
+
+### Syntax:
+
+
+
+
+ImageDrawer Method: setSize {#ImageDrawer:setSize}
+---------------------------------------------------
+
+
+### Syntax:
+
+
+
+
+ImageDrawer Method: isDrawing {#ImageDrawer:isDrawing}
+-------------------------------------------------------
 
 
 ### Syntax:
@@ -76,7 +130,7 @@ Fx.ImageDrawer Method: get {#Fx.ImageDrawer:get}
 
 
 
-Fx.ImageDrawer Method: start {#Fx.ImageDrawer:start}
+ImageDrawer Method: onMotion {#ImageDrawer:onMotion}
 -----------------------------------------------------
 
 
@@ -88,90 +142,17 @@ Fx.ImageDrawer Method: start {#Fx.ImageDrawer:start}
 
 1. props - (**)
 
-### Returns:
 
-
-
-
-Class: ImageDrawer {#ImageDrawer}
-=================================
-
-
-
-### Extends:
-
-Fx
-
-
-
-
-ImageDrawer Method: constructor {#ImageDrawer:constructor}
------------------------------------------------------------
-
-
-### Syntax:
-
-	var myImageDrawer = new ImageDrawer(options);
-
-### Arguments:
-
-1. options - (**)
-
-
-ImageDrawer Method: prepare {#ImageDrawer:prepare}
----------------------------------------------------
+ImageDrawer Method: onProgress {#ImageDrawer:onProgress}
+---------------------------------------------------------
 
 
 ### Syntax:
 
 
 
-### Arguments:
 
-1. property - (**)
-2. values - (**)
-
-### Returns:
-
-
-
-
-
-ImageDrawer Method: compute {#ImageDrawer:compute}
----------------------------------------------------
-
-
-### Syntax:
-
-
-
-### Arguments:
-
-1. from - (**)
-2. to - (**)
-3. delta - (**)
-
-### Returns:
-
-
-
-
-
-ImageDrawer Method: get {#ImageDrawer:get}
--------------------------------------------
-
-
-### Syntax:
-
-
-
-### Returns:
-
-
-
-
-
-ImageDrawer Method: start {#ImageDrawer:start}
+ImageDrawer Method: pause {#ImageDrawer:pause}
 -----------------------------------------------
 
 
@@ -179,12 +160,23 @@ ImageDrawer Method: start {#ImageDrawer:start}
 
 
 
+
+ImageDrawer Method: cancel {#ImageDrawer:cancel}
+-------------------------------------------------
+
+
+### Syntax:
+
+
+
+
+ImageDrawer Method: draw {#ImageDrawer:draw}
+---------------------------------------------
+
+### Syntax:
+
+
+
 ### Arguments:
 
-1. props - (**)
-
-### Returns:
-
-
-
-
+1. porps - (**)
