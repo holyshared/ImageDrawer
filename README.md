@@ -8,12 +8,11 @@ ImageDrawer Project
 [http://github.com/holyshared/ImageDrawer](http://github.com/holyshared/ImageDrawer)
 
 ![ImageDrawer.Grid](http://holyshared.github.com/ImageDrawer/screenshot1.jpg)
-![ImageDrawer.Expand](http://holyshared.github.com/ImageDrawer/screenshot2.jpg)
-
-Please see the following about use.
 
 How to Use
 ------------------------------------------------------
+
+Please see the following about use.
 
 ### ImageDrawer.Grid
 
@@ -183,6 +182,13 @@ All options have default values assigned, hence are optional.
 * **duration**: (int) duration of animation.
 * **onDrawStart**: When drawing begins, this event is generated.
 * **onDrawComplete**: When drawing is completed, this event is generated.
+
+
+Screenshots
+------------------------------------------------------
+![ImageDrawer.Expand Top](http://holyshared.github.com/ImageDrawer/screenshot2.jpg)
+![ImageDrawer.Expand Right](http://holyshared.github.com/ImageDrawer/screenshot3.jpg)
+![ImageDrawer.Expand Bottom](http://holyshared.github.com/ImageDrawer/screenshot4.jpg)
 
 License
 ------------------------------------------------------
