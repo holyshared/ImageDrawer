@@ -1,4 +1,5 @@
-# ImageDrawer
+ImageDrawer
+=========================
 
 This plug-in draws in the image by using various animations.
 It is assumed to build it in the slide show and the image gallery, etc. and is developed.
@@ -11,9 +12,10 @@ ImageDrawer Project
 
 Please see the following about use.
 
-## ImageDrawer.Grid
+How to Use
+------------------------------------------------------
 
-### How to use
+### ImageDrawer.Grid
 
 #### Step.1 HTML
 
@@ -84,8 +86,7 @@ or
 		drawer.drawLeft();
 	}
 
-
-### Options
+#### Options
 
 All options have default values assigned, hence are optional.
 
@@ -100,9 +101,7 @@ All options have default values assigned, hence are optional.
 * **onDrawComplete**: When drawing is completed, this event is generated.
 
 
-## ImageDrawer.Expand
-
-### How to use
+### ImageDrawer.Expand
 
 #### Step.1 HTML
 
@@ -172,7 +171,7 @@ or
 	}
 
 
-### Options
+#### Options
 
 All options have default values assigned, hence are optional.
 
@@ -185,8 +184,8 @@ All options have default values assigned, hence are optional.
 * **onDrawStart**: When drawing begins, this event is generated.
 * **onDrawComplete**: When drawing is completed, this event is generated.
 
-
-## License
+License
+------------------------------------------------------
 
 The MIT License
 [http://www.opensource.org/licenses/mit-license.php](http://www.opensource.org/licenses/mit-license.php "The MIT License")
