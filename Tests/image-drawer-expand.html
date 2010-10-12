@@ -19,35 +19,35 @@
 		<script type="text/javascript" src="../Source/ImageDrawer.js"></script>
 		<script type="text/javascript" src="../Source/ImageDrawer.Expand.js"></script>
 		<script type="text/javascript">
-			window.addEvent("domready", function() {
+			window.addEvent('domready', function() {
 
-				var log = document.id("log");
-				var drawLeft = document.id("drawLeft");
-				drawLeft.addEvent("click", function() {
+				var log = document.id('log');
+				var drawLeft = document.id('drawLeft');
+				drawLeft.addEvent('click', function() {
 
 					var image1 = new Image();
-					image1.src = "images/img_demo1.jpg";
+					image1.src = 'images/img_demo1.jpg';
 					image1.onload = function() {
-						var left = document.id("drawCanvas");
+						var left = document.id('drawCanvas');
 						left.setProperties({
-							'width': image1.width,
-							'height': image1.height
+							width: image1.width,
+							height: image1.height
 						});
 	
 						var container = left.getParent();
 						container.setStyles({
-							'width': image1.width,
-							'height': image1.height
+							width: image1.width,
+							height: image1.height
 						});
 
 						var drawer = new ImageDrawer.Expand({
-							'slideWidth': 50,
-							'transition': 'expo:out',
-							'duration': 600,
-							'interval': 70,
-							'onDrawStart': function() { log.set("html", "Start"); },
-							'onDrawComplete': function() {
-								log.set("html", "Complete");
+							slideWidth: 50,
+							transition: 'expo:out',
+							duration: 600,
+							interval: 70,
+							onDrawStart: function() { log.set('html', 'Start'); },
+							onDrawComplete: function() {
+								log.set('html', 'Complete');
 							}
 						});
 
@@ -57,31 +57,31 @@
 
 				});
 
-				var drawRight = document.id("drawRight");
-				drawRight.addEvent("click", function() {
+				var drawRight = document.id('drawRight');
+				drawRight.addEvent('click', function() {
 					var image2 = new Image();
-					image2.src = "images/img_demo2.jpg";
+					image2.src = 'images/img_demo2.jpg';
 					image2.onload = function(event) {
-						var right = document.id("drawCanvas");
+						var right = document.id('drawCanvas');
 						right.setProperties({
-							'width': image2.width,
-							'height': image2.height
+							width: image2.width,
+							height: image2.height
 						});
 	
 						var container = right.getParent();
 						container.setStyles({
-							'width': image2.width,
-							'height': image2.height
+							width: image2.width,
+							height: image2.height
 						});
 	
 						var drawer = new ImageDrawer.Expand({
-							'slideWidth': 50,
-							'transition': 'expo:in',
-							'duration': 600,
-							'interval': 70,
-							'onDrawStart': function() { log.set("html", "Start"); },
-							'onDrawComplete': function() {
-								log.set("html", "Complete");
+							slideWidth: 50,
+							transition: 'expo:in',
+							duration: 600,
+							interval: 70,
+							onDrawStart: function() { log.set('html', 'Start'); },
+							onDrawComplete: function() {
+								log.set('html', 'Complete');
 							}
 						});
 						drawer.setImage(image2).setCanvas(right);
@@ -92,14 +92,14 @@
 		</script>
 	</head>
 	<body>
-		<div id="warpper">
+		<div id='warpper'>
 			<h1>ImageDrawer.Expand.js</h1>
 			<ul>
-				<li><a id="drawLeft" href="#left">left</a></li>
-				<li><a id="drawRight" href="#right">right</a></li>
+				<li><a id='drawLeft' href='#left'>left</a></li>
+				<li><a id='drawRight' href='#right'>right</a></li>
 			</ul>
-			<div class="container"><canvas id="drawCanvas"></canvas></div>
-			<p id="log">&nbsp;</p>
+			<div class='container'><canvas id='drawCanvas'></canvas></div>
+			<p id='log'>&nbsp;</p>
 	    </div>
 	</body>
 </html> 
