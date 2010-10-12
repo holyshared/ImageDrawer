@@ -33,6 +33,9 @@ provides: [ImageDrawer, ImageDrawer.Grid, ImageDrawer.Expand]
 ...
 */
 
+
+(function($){
+
 Fx.ImageDrawer = new Class({
 
 	Extends: Fx,
@@ -51,7 +54,7 @@ Fx.ImageDrawer = new Class({
 		return {from: values[0], to: values[1]};
 	},
 
-	compute: function(from, to, delta) {
+	compute: function(from, to, delta){
 		this.value = {};
 		for (var p in from) { this.value[p] = this.parent(from[p], to[p], delta); }
 		this.fireEvent('motion', this.value);
@@ -62,7 +65,7 @@ Fx.ImageDrawer = new Class({
 		return this.value || 0;
 	},
 
-	start: function(props) {
+	start: function(props){
 		if (!this.check(props)) return this;
 		var from = {}, to = {};
 		for (var p in props) {
@@ -76,24 +79,24 @@ Fx.ImageDrawer = new Class({
 });
 
 
-var ImageDrawer = new Class({
+var ImageDrawer = this.ImageDrawer = new Class({
 
 	Implements: [Events, Options],
 
 	options: {
-		'canvas': null,
-		'source': null,
-		'interval': 70,
-		'transition': 'expo:out',
-		'duration': 600
+		canvas: null,
+		source: null,
+		interval: 70,
+		transition: 'expo:out',
+		duration: 600
 	},
 
-	initialize: function(options) {
+	initialize: function(options){
 		this.setOptions(options);
 		this.setDefaultValues();
 	},
 
-	setDefaultValues: function() {
+	setDefaultValues: function(){
 		var options = this.options;
 		this.counter = 0;
 		this.drawers = [];
@@ -101,7 +104,7 @@ var ImageDrawer = new Class({
 		if (options.source) { this.setImage(options.source); }
 	},
 
-	setCanvas: function(canvas) {
+	setCanvas: function(canvas){
 		this.canvas = canvas;
 		this.context = this.canvas.getContext('2d');
 		if (this.source) {
@@ -111,11 +114,11 @@ var ImageDrawer = new Class({
 		return this;
 	},
 
-	getCanvas: function() {
+	getCanvas: function(){
 		return this.canvas;
 	},
 
-	setImage: function(image) {
+	setImage: function(image){
 		if (instanceOf(image, String)) {
 			var source = new Image();
 			source.src = image;
@@ -128,62 +131,66 @@ var ImageDrawer = new Class({
 		return this;
 	},
 	
-	getImage: function(image) {
+	getImage: function(image){
 		return this.source;
 	},
 
-	setupDrawer: function() {},
+	//abstract method
+	setupDrawer: function(){
+	},
 
-	setSize: function() {
+	setSize: function(){
 		this.size = {
-			'x': this.source.width,
-			'y': this.source.height
+			x: this.source.width,
+			y: this.source.height
 		};
 		if (this.canvas) {
 			this.canvas.setProperties({
-				'width': this.size.x,
-				'height': this.size.y
+				width: this.size.x,
+				height: this.size.y
 			});
 		}
 	},
 
-	isDrawing: function() {
+	isDrawing: function(){
 		return (this.drawing) ? true : false;
 	},
 
-	onMotion: function(props) {},
+	//abstract method
+	onMotion: function(props){
+	},
 
-	onProgress: function() {
+	onProgress: function(){
 		this.counter++;
 		if (this.counter >= this.total) {
 			this.counter = 0;
 			this.drawing = false;
-			this.fireEvent("drawComplete", [this]);
+			this.fireEvent('drawComplete', [this]);
 		}
 	},
 
-	pause: function() {
+	pause: function(){
 		if (!this.drawed) this.drawers.each(function(fx) { fx.pause(); });
 		this.drawing = false;
 	},
 
-	cancel: function() {
+	cancel: function(){
 		if (!this.drawed) this.drawers.each(function(fx) { fx.cancel(); });
 		this.counter = 0;
 		this.drawing = false;
 	},
 
-	draw: function(porps) {
+	draw: function(porps){
 		if (!instanceOf(this.canvas, Element)
-		|| this.canvas.nodeName != "CANVAS") {
-			throw new TypeError("The canvas element is not set.");
+		|| this.canvas.nodeName != 'CANVAS') {
+			throw new TypeError('The canvas element is not set.');
 		}
-		this.fireEvent("drawStart", [this]);
+		this.fireEvent('drawStart', [this]);
 	}
 
 });
 
-ImageDrawer.factory = function(imageDrawer, options) {
+ImageDrawer.factory = function(imageDrawer, options){
 	var instance = null;
 	var typeKey = imageDrawer.capitalize();
 	if (ImageDrawer[typeKey]) {
@@ -191,3 +198,6 @@ ImageDrawer.factory = function(imageDrawer, options) {
 	}
 	return instance;
 };
+
+
+}(document.id));

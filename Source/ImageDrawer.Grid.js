@@ -33,6 +33,9 @@ provides: [ImageDrawer, ImageDrawer.Grid, ImageDrawer.Expand]
 ...
 */
 
+(function($){
+
+var ImageDrawer = (this.ImageDrawer || {});
 
 ImageDrawer.Grid = new Class({
 
@@ -167,3 +170,5 @@ ImageDrawer.Grid = new Class({
 	}
 
 });
+
+}(document.id));
