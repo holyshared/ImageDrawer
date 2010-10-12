@@ -33,52 +33,56 @@ provides: [ImageDrawer, ImageDrawer.Grid, ImageDrawer.Expand]
 ...
 */
 
+(function($){
+
+var ImageDrawer = (this.ImageDrawer || {});
+
 ImageDrawer.Expand = new Class({
 
 	Extends: ImageDrawer,
 
 	options: {
-		'canvas': null,
-		'source': null,
-		'slideWidth': 50,
-		'interval': 70,
-		'transition': 'expo:in',
-		'duration': 600
+		canvas: null,
+		source: null,
+		slideWidth: 50,
+		interval: 70,
+		transition: 'expo:in',
+		duration: 600
 	},
 
-	initialize: function(options) {
+	initialize: function(options){
 		this.parent(options);
 	},
 
-	onMotion: function(props) {
+	onMotion: function(props){
 		this.context.clearRect(this.drawX, this.drawY, this.drawWidth, this.drawHeight);
 		this.context.drawImage(this.source,
 			this.drawX, props.top, this.drawWidth, props.height,
 			this.drawX, props.top, this.drawWidth, props.height);
 	},
 
-	setupDrawer: function() {
+	setupDrawer: function(){
 		if (this.size) {
 			this.cols = this.size.x / this.options.slideWidth; 
 			this.total = this.cols; 
 		}
 	},
 
-	getContext: function(x, y) {
+	getContext: function(x, y){
 		var options = this.options;
 		return {
-			"context": this.context,
-			"source": this.source,
-			"drawX": x,
-			"drawY": y,
-			"drawHeight": this.size.y,
-			"drawWidth": options.slideWidth
+			context: this.context,
+			source: this.source,
+			drawX: x,
+			drawY: y,
+			drawHeight: this.size.y,
+			drawWidth: options.slideWidth
 		};		
 	},
 
-	getShuffle: function(contexts) { 
+	getShuffle: function(contexts){
 		var shuffle = [];
-		while (contexts.length > 0) {
+		while (contexts.length > 0){
 			var props = contexts.getRandom();
 			shuffle.push(props);
 			contexts.erase(props);
@@ -86,7 +90,7 @@ ImageDrawer.Expand = new Class({
 		return shuffle;
 	},
 
-	draw: function(porps) {
+	draw: function(porps){
 		this.parent();
 
 		var op = this.options;
@@ -95,19 +99,19 @@ ImageDrawer.Expand = new Class({
 		this.drawing = true;
 		this.drawers = [];
 
-		porps.each(function(p, k) {
+		porps.each(function(p, k){
 			var fx = new Fx.ImageDrawer({
-				"transition": op.transition,
-				"duration": duration,
-				"link": "cancel",
-				"fps": 30,
-				"onMotion":	this.onMotion.bind(p),
-				"onComplete": this.onProgress.bind(this)
+				transition: op.transition,
+				duration: duration,
+				link: 'cancel',
+				fps: 30,
+				onMotion:	this.onMotion.bind(p),
+				onComplete: this.onProgress.bind(this)
 			});
 
 			fx.start({
-				"top": p.top,
-				"height": [0, this.size.y]
+				top: p.top,
+				height: [0, this.size.y]
 			});
 
 			duration = duration + op.interval;
@@ -115,7 +119,7 @@ ImageDrawer.Expand = new Class({
 		}, this);
 	},
 
-	drawLeft: function() {
+	drawLeft: function(){
 		var contexts = [];
 		var options = this.options;
 		for (var x = 0; x < this.cols; x++) {
@@ -127,7 +131,7 @@ ImageDrawer.Expand = new Class({
 		this.draw(contexts);
 	},
 
-	drawRight: function() {
+	drawRight: function(){
 		var contexts = [];
 		var options = this.options;
 		for (var x = this.cols; x > 0; x--) {
@@ -139,7 +143,7 @@ ImageDrawer.Expand = new Class({
 		this.draw(contexts);
 	},
 
-	drawTop: function() {
+	drawTop: function(){
 		var contexts = [];
 		var options = this.options;
 		for (var x = this.cols; x > 0; x--) {
@@ -151,7 +155,7 @@ ImageDrawer.Expand = new Class({
 		this.draw(this.getShuffle(contexts));
 	},
 
-	drawBottom: function() {
+	drawBottom: function(){
 		var contexts = [];
 		var options = this.options;
 		for (var x = this.cols; x > 0; x--) {
@@ -163,5 +167,6 @@ ImageDrawer.Expand = new Class({
 		this.draw(this.getShuffle(contexts));
 	}
 
-
 });
+
+}(document.id));
