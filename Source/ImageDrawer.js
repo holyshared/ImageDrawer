@@ -42,9 +42,9 @@ Fx.ImageDrawer = new Class({
 	},
 
 	prepare: function(property, values){
-		values = $splat(values);
+		values = Array.from(values);
 		var values1 = values[1];
-		if (!$chk(values1)){
+		if (!(values1 || values1 === 0)){
 			values[1] = values[0];
 			values[0] = values[0];
 		}
@@ -116,7 +116,7 @@ var ImageDrawer = new Class({
 	},
 
 	setImage: function(image) {
-		if ($type(image) == "string") {
+		if (instanceOf(image, String)) {
 			var source = new Image();
 			source.src = image;
 			this.source = source;
@@ -174,7 +174,7 @@ var ImageDrawer = new Class({
 	},
 
 	draw: function(porps) {
-		if ($type(this.canvas) != "element"
+		if (!instanceOf(this.canvas, Element)
 		|| this.canvas.nodeName != "CANVAS") {
 			throw new TypeError("The canvas element is not set.");
 		}
