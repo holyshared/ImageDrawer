@@ -1,5 +1,7 @@
 /*
 ---
+name: ImageDrawer.Expand
+
 description: It draws in the image while expanding the width of length.
 
 license: MIT-style

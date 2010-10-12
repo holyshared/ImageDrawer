@@ -1,5 +1,7 @@
 /*
 ---
+name: ImageDrawer
+
 description: ImageDrawer offers API that draws to the canvas in the image while doing animation.
 
 license: MIT-style
@@ -28,7 +30,7 @@ requires:
   - Fx/Fx
   - Fx/Fx.Transitions
 
-provides: [ImageDrawer, ImageDrawer.Grid, ImageDrawer.Expand]
+provides: [ImageDrawer, ImageDrawer.Grid, ImageDrawer.Expand, Fx.ImageDrawer]
 
 ...
 */

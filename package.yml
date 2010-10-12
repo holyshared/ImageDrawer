@@ -1,7 +1,28 @@
 name: ImageDrawer
+
+web: "[http://sharedhat.com](http://sharedhat.com)"
+
+description: "Drawing API using animation for canvas is offered."
+
+authors: "[Noritaka Horio](http://sharedhat.com)"
+
+license: "[MIT License](http://sharedhat.com/license.txt)"
+
+copyright: "&copy; [Noritaka Horio](http://sharedhat.com)"
+
+sources:
+  - "Source/ImageDrawer.js"
+  - "Source/ImageDrawer.Grid.js"
+  - "Source/ImageDrawer.Expand.js"
+
 author: holyshared
+
 category: Media
+
 tags: [canvas, api, media, image]
-demo: http://holyshared.github.com/ImageDrawer/
-current: 1.0
+
+current: 1.1
+
 #docs: http://url.to.docs
+
+demo: http://holyshared.github.com/ImageDrawer/

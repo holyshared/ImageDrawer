@@ -1,5 +1,7 @@
 /*
 ---
+name: ImageDrawer.Grid
+
 description: It draws in the image in each small grid.
 
 license: MIT-style
