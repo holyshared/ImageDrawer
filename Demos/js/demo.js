@@ -11,22 +11,22 @@
 		});
 
 		var grid = new ImageDrawer.Grid({
-			'gridHeight': 55,
-			'gridWidth': 65,
-			'interval': 70,
-			'duration': 600
+			gridHeight: 55,
+			gridWidth: 65,
+			interval: 70,
+			duration: 600
 		});
 
 		var expand = new ImageDrawer.Expand({
-			'slideWidth': 65,
-			'interval': 70,
-			'duration': 600,
-			'transition': 'expo:out'
+			slideWidth: 65,
+			interval: 70,
+			duration: 600,
+			transition: 'expo:out'
 		});
 
 		var drawImages = ['images/demo1.jpg', 'images/demo2.jpg'];
 		var images = Asset.images(drawImages, {
-			'onComplete': function() {
+			onComplete: function() {
 				grid.setImage(images.shift());
 				grid.setCanvas(canvases.shift());
 
