@@ -1,4 +1,6 @@
-name: ImageDrawer
+name: "ImageDrawer"
+
+exports: "image-drawer.js"
 
 web: "[http://sharedhat.com](http://sharedhat.com)"
 
@@ -6,7 +8,7 @@ description: "Drawing API using animation for canvas is offered."
 
 authors: "[Noritaka Horio](http://sharedhat.com)"
 
-license: "[MIT License](http://sharedhat.com/license.txt)"
+license: "[MIT License](http://sharedhat.com/mit-license.txt)"
 
 copyright: "&copy; [Noritaka Horio](http://sharedhat.com)"
 
