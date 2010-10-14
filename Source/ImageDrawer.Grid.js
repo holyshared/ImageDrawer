@@ -56,14 +56,10 @@ ImageDrawer.Grid = new Class({
 	},
 
 	onMotion: function(props) {
-		var height = Math.round(props.height);
-		var width  = Math.round(props.width);
-		var left = Math.round(props.left);
-		var top = Math.round(props.top);
-		height = (height > 0) ? height : 1;
-		width = (width > 0) ? width : 1;
-		left = (left > 0) ? left : 1;
-		top = (top > 0) ? top : 1;
+		var height = (props.height > 0) ? props.height : 0.01;
+		var width = (props.width > 0) ? props.width : 0.01;
+		var left = props.left ? props.left : 0.01;
+		var top = props.top ? props.top : 0.01;
 
 		this.context.clearRect(this.drawX, this.drawY, this.drawWidth, this.drawHeight);
 		this.context.drawImage(this.source,
@@ -106,7 +102,7 @@ ImageDrawer.Grid = new Class({
 				duration: duration,
 				link: 'cancel',
 				fps: 30,
-				onMotion:	this.onMotion.bind(p),
+				onMotion: this.onMotion.bind(p),
 				onComplete: this.onProgress.bind(this)
 			});
 
@@ -164,10 +160,10 @@ ImageDrawer.Grid = new Class({
 	drawBottom: function() {
 		var contexts = [];
 		var options = this.options;
-		for (var y = this.rows; y >= 0; y--) {
+		for (var y = this.rows; y > 0; y--) {
 			for (var x = 0; x < this.cols; x++) {
 				var left = x * options.gridWidth;
-				var top = y * options.gridHeight;
+				var top = (y - 1) * options.gridHeight;
 				contexts.push(this.getContext(left, top));
 			}
 		}
