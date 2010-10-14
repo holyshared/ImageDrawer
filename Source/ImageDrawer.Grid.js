@@ -42,13 +42,13 @@ ImageDrawer.Grid = new Class({
 	Extends: ImageDrawer,
 
 	options: {
-		'canvas': null,
-		'source': null,
-		'gridHeight': 50,
-		'gridWidth': 50,
-		'interval': 70,
-		'transition': 'expo:in:out',
-		'duration': 600
+		canvas: null,
+		source: null,
+		gridHeight: 50,
+		gridWidth: 50,
+		interval: 70,
+		transition: 'expo:in:out',
+		duration: 600
 	},
 
 	initialize: function(options) {
@@ -56,10 +56,14 @@ ImageDrawer.Grid = new Class({
 	},
 
 	onMotion: function(props) {
-		var height = (props.height > 0) ? props.height : 0.01;
-		var width  = (props.width > 0) ? props.width : 0.01;
-		var left = (props.left > 0) ? props.left : 0.01;
-		var top = (props.top > 0) ? props.top : 0.01;
+		var height = Math.round(props.height);
+		var width  = Math.round(props.width);
+		var left = Math.round(props.left);
+		var top = Math.round(props.top);
+		height = (height > 0) ? height : 1;
+		width = (width > 0) ? width : 1;
+		left = (left > 0) ? left : 1;
+		top = (top > 0) ? top : 1;
 
 		this.context.clearRect(this.drawX, this.drawY, this.drawWidth, this.drawHeight);
 		this.context.drawImage(this.source,
@@ -78,12 +82,13 @@ ImageDrawer.Grid = new Class({
 	getContext: function(x, y) {
 		var options = this.options;
 		return {
-			"context": this.context,
-			"source": this.source,
-			"drawX": x, "drawY": y,
-			"drawWidth": options.gridWidth,
-			"drawHeight": options.gridHeight
-		};		
+			context: this.context,
+			source: this.source,
+			drawX: x,
+			drawY: y,
+			drawWidth: options.gridWidth,
+			drawHeight: options.gridHeight
+		};
 	},
 
 	draw: function(porps) {
@@ -93,23 +98,23 @@ ImageDrawer.Grid = new Class({
 		var duration = op.duration;
 
 		this.drawing = true;
-		this.drawers = [];		
+		this.drawers = [];
 
 		porps.each(function(p, k) {
 			var fx = new Fx.ImageDrawer({
-				"transition": op.transition,
-				"duration": duration,
-				"link": "cancel",
-				"fps": 30,
-				"onMotion":	this.onMotion.bind(p),
-				"onComplete": this.onProgress.bind(this)
+				transition: op.transition,
+				duration: duration,
+				link: 'cancel',
+				fps: 30,
+				onMotion:	this.onMotion.bind(p),
+				onComplete: this.onProgress.bind(this)
 			});
 
 			fx.start({
-				"height": [0, op.gridHeight],
-				"width": [0, op.gridWidth],
-				"top": [p.drawY + op.gridHeight / 2, p.drawY],
-				"left": [p.drawX + op.gridWidth / 2, p.drawX]
+				height: [0, op.gridHeight],
+				width: [0, op.gridWidth],
+				top: [p.drawY + op.gridHeight / 2, p.drawY],
+				left: [p.drawX + op.gridWidth / 2, p.drawX]
 			});
 			duration = duration + op.interval;
 			this.drawers.push(fx);

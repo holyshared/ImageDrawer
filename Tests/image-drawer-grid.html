@@ -32,18 +32,18 @@
 							width: image1.width,
 							height: image1.height
 						});
-	
+
 						var container = left.getParent();
 						container.setStyles({
 							width: image1.width,
 							height: image1.height
 						});
-	
+
 						var drawer = new ImageDrawer.Grid({
 							gridHeight: 55,
 							gridWidth: 65,
 							transition: 'expo:in:out',
-							duration: 30,
+							duration: 100,
 							onDrawStart: function() { log.set('html', 'Start'); },
 							onDrawComplete: function() { log.set('html', 'Complete'); }
 						});
@@ -64,13 +64,13 @@
 							width: image2.width,
 							height: image2.height
 						});
-	
+
 						var container = right.getParent();
 						container.setStyles({
 							width: image2.width,
 							height: image2.height
 						});
-	
+
 						var drawer = new ImageDrawer.Grid({
 							transition: 'back:in:out',
 							gridHeight: 55,
