@@ -56,7 +56,7 @@ Fx.ImageDrawer = new Class({
 	compute: function(from, to, delta){
 		this.value = {};
 		for (var p in from) { this.value[p] = this.parent(from[p], to[p], delta); }
-		this.fireEvent('motion', this.value);
+		this.fireEvent('motion', [this.value]);
 		return this.value;
 	},
 
